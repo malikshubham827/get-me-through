@@ -1,0 +1,11 @@
+{
+  "name": "get_me_through",
+  "version": "1.0.0",
+  "description": "Get Me Through app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shubham Malik",
+  "license": "ISC"
+}
