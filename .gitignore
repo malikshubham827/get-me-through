@@ -2,3 +2,6 @@ lib
 bin
 .ipynb_checkpoints
 node_modules
+known_people/*
+data/*
+.vscode
