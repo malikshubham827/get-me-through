@@ -5,3 +5,4 @@ node_modules
 known_people/*
 data/*
 .vscode
+share/
