@@ -2,10 +2,26 @@
   "name": "get_me_through",
   "version": "1.0.0",
   "description": "Get Me Through app",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec node server/server.js"
+  },
+  "engines": {
+    "node": "8.1.4"
   },
   "author": "Shubham Malik",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "compression": "^1.7.0",
+    "express": "^4.15.3",
+    "materialize-css": "^0.99.0",
+    "path": "^0.12.7",
+    "python-shell": "^0.4.0",
+    "qr-image": "^3.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
 }

@@ -1,30 +1,30 @@
 import sys,json,numpy as np
 import face_recognition
 import cv2
-
 # for feeding data
-import glob
+import glob,os
 from pathlib import Path
 import numpy as np
-home = "./../../"
+home = str(os.path.dirname(os.path.abspath(__file__))) + "/../../"
 file_names = glob.glob(home + "/known_people/*.jp*g")
 #end
-
 #Read data from stdin
 def read_in():
     lines = sys.stdin.readline()
-    #Since our input would only be having one line, parse our JSON data from that
+    # Since our input would only be having one line, parse our JSON data from that
     return lines
 
 #Function to check if the person is authorised based on certain parameters
+
+
 def authorised(name):
-    #Assuming if person is not in Database then it is Un-authorised
+    # Assuming if person is not in Database then it is Un-authorised
     return not "Unknown" in name
 
-def main():
 
+def main():
     # GETTING KNOWN ENCODINGS AND NAMES
-    home = "./../../"
+    home = str(os.path.dirname(os.path.abspath(__file__))) + "/../../"
     known_encodings_file_path = home + "/data/known_encodings_file.csv"
     people_file_path = home + "/data/people_file.csv"
     # For storing the encoding of a face
@@ -43,14 +43,13 @@ def main():
 
 
 
-
 # MAIN WORK
 
     #Capture Video indefinitely
     video_capture = cv2.VideoCapture(0)
 
-    #TODO: GET FROM DATABASE
-    #known encodings of persons in database.
+    # TODO: GET FROM DATABASE
+    # known encodings of persons in database.
     # known_encodings = []
     # people = []
 
@@ -96,6 +95,7 @@ def main():
                     if match[i]:
                         name = people[i]
                         break
+                #Change it, run the loop to find no. of Unknown
                 if "Unknown" in name:
                     other += 1
                     name += str(other)
