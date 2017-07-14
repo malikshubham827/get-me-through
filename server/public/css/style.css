@@ -1,0 +1,9 @@
+@media only screen and (min-width: 993px) {
+    .brand-logo {
+        left:37%;
+    }
+}
+.row {
+    padding-top: 10px;
+    margin-top: 10px;
+}

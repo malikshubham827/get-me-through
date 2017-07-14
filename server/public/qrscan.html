@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>QR Scna</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <video id="preview"></video>
+        <script type="text/javascript" src="js/instascan.min.js"></script>
+        <script type="text/javascript">
+        let opts = {
+            continuous: false,
+            video:document.getElementById('preview'),
+            mirror:true,
+            captureImage: false,
+            backgroundScan: false,
+            refractoryPeriod: 5000,
+            scanPeriod:1
+        }
+        function readQR() {
+            let scanner = new Instascan.Scanner({video:document.getElementById('preview')});
+            let result = null;
+            scanner.addListener('scan', function(content){
+                console.log(content);
+                scanner.stop()
+                .then(function() {
+                        console.log("Camera stopped.");
+                    })
+                    .catch(function(e) {
+                        console.log('problem closing camera: '+e);
+                    })
+            })
+            Instascan.Camera.getCameras()
+            .then(function (cameras) {
+                if(cameras.length > 0) {
+                    scanner.start(cameras[0]);
+                    
+                }else {
+                    console.error('No Cameras found.');
+                }
+            })
+            if(!result) {
+                console.log('Try Again!');
+            }else {
+                console.log('Code:' + result.content);
+            }
+        }
+    </script>
+            <button type="button" onclick="readQR()">Decode Qr</button>
+
+    </body>
+</html>

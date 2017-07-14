@@ -6,3 +6,4 @@ known_people/
 data/
 .vscode
 share/
+.idea/*
