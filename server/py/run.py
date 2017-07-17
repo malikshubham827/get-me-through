@@ -100,7 +100,7 @@ def main():
                     other += 1
                     name += str(other)
                 face_names.append(name)
-            
+            print(face_names, flush=True)
         process_this_frame = not process_this_frame
 
         #Display the border
@@ -117,7 +117,7 @@ def main():
                 #Unauthenticated person
                 color = (0,0,255) #RED
                 #print so that parent process in Node.js can use it
-                print(name,flush=True)
+                # print(name,flush=True)
 
             #Display border
             cv2.rectangle(frame, (left,top), (right,bottom), color, 2)

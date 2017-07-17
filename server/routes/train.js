@@ -10,8 +10,12 @@ router.get('/', function(req, res) {
     });
 
     function exitHandler(data, signal) {
-        res.sendStatus(200);
         console.log('train.js -> success code:'+data + ' ' + signal);
+        if(data!=0) {
+            res.sendStatus(500);
+        }else {
+            res.sendStatus(200);
+        }
     }
     function errorHandler(data) {
         res.sendStatus(418);

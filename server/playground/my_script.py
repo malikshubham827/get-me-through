@@ -8,6 +8,8 @@ import numpy as np
 home = str(os.path.dirname(os.path.abspath(__file__))) + "/../../"
 file_names = glob.glob(home + "/known_people/*.jp*g")
 #end
+
+print("In the py\n", flush=True)
 #Read data from stdin
 def read_in():
     lines = sys.stdin.readline()
@@ -47,7 +49,7 @@ def main():
 
     #Capture Video indefinitely
     video_capture = cv2.VideoCapture(0)
-
+    # time.delay(2)
     # TODO: GET FROM DATABASE
     # known encodings of persons in database.
     # known_encodings = []
@@ -95,13 +97,18 @@ def main():
                     if match[i]:
                         name = people[i]
                         break
-                #Change it, run the loop to find no. of Unknown
+
                 if "Unknown" in name:
                     other += 1
                     name += str(other)
                 face_names.append(name)
+        
+        # Send the names of the people to the parent process
+        # os.write(3,b'{"dt" : "This is a test"}')
+        print(face_names, flush=True)
             
         process_this_frame = not process_this_frame
+        
 
         #Display the border
         for (top, right, bottom, left),name in zip(face_locations, face_names):
