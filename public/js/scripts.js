@@ -8,6 +8,61 @@ $(document).ready(
         // then firstTime = true. Initially process is not running.
         var firstTime = true;
 
+        // For QR Code scanning
+        // START
+        let opts = {
+            continuous: false,
+            video: document.getElementById('preview'),
+            mirror: true,
+            captureImage: false,
+            backgroundScan: false,
+            refractoryPeriod: 5000,
+            scanPeriod: 1
+        }
+        let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+        var readQRCallback = function (content) {
+            console.log(content);
+            var $toastContent = $('<span><i class="material-icons">done</i>QR Code decoded!</span>');
+            Materialize.toast($toastContent, 5000);
+            scanner.removeListener('scan', arguments.callee);
+            $('#modal1').modal('close');
+
+        }
+
+        stopQR = function () {
+            console.log('in stop');
+            scanner.removeListener('scan', readQRCallback);
+            scanner.stop()
+                .then(function () {
+                    console.log("Camera stopped.");
+                })
+                .catch(function (e) {
+                    console.log('problem closing camera: ' + e);
+                })
+        }
+
+        function readQR() {
+            let result = null;
+            scanner.addListener('scan', readQRCallback);
+            Instascan.Camera.getCameras()
+                .then(function (cameras) {
+                    if (cameras.length > 0) {
+                        // By default choosing the first(or only) camera
+                        scanner.start(cameras[0]);
+
+                    } else {
+                        console.error('No Cameras found.');
+                        var $toastContent = $('<span><i class="material-icons">report_problem</i>No Cameras found!</span>');
+                        Materialize.toast($toastContent, 5000);
+                    }
+                });
+        }
+        // END of QR Code scanning utility
+
+        // Initialise the modal intended for QR Code scanning
+        $('#modal1').modal();
+
+        // The previous liveUpdate for comparison
         var prevUpdate = null;
 
         var option = {
@@ -58,13 +113,13 @@ $(document).ready(
 
         // Send request to run the face-recognition program
         $('#run-button').on('click', function () {
-            var run_button = this;
             liveUpdates = true;
-            $(run_button).addClass('disabled');
+            $('#run-button').addClass('disabled');
             $('#stop-button').removeClass('disabled');
 
             if (firstTime) {
                 socket.emit('receive liveUpdates');
+                $('#halt-resume').removeClass('disabled');
                 firstTime = false;
             } else {
                 socket.emit('resume liveUpdates');
@@ -74,10 +129,33 @@ $(document).ready(
         $('#stop-button').on('click', function () {
             firstTime = true;
             $(this).addClass('disabled');
+            $('#halt-resume').html('Halt<i class="material-icons right">thumbs_up_down</i>');
+            $('#halt-resume').addClass('disabled');
             socket.emit('stop liveUpdates');
             $('.collapsible').empty();
             $('.collapsible').hide();
         });
+
+        // Halt/Resume the liveUpdates feature
+        $('#halt-resume').on('click', function () {
+            if (liveUpdates) {
+                // liveUpdates ON so turn it OFF
+                liveUpdates = false;
+                socket.emit('halt liveUpdates');
+                // change text
+                $(this).html('<i class="material-icons right">thumbs_up_down</i>Resume');
+                var $toastContent = $('<span><i class="material-icons">report_problem</i>Live Updates, halted!</span>');
+                Materialize.toast($toastContent, 5000);
+            } else {
+                liveUpdates = true;
+                socket.emit('resume liveUpdates');
+                $(this).html('Halt<i class="material-icons right">thumbs_up_down</i>');
+                var $toastContent = $('<span><i class="material-icons">done</i>Live Updates, resumed!</span>');
+                Materialize.toast($toastContent, 5000);
+            }
+        });
+
+        // New update received from server
         socket.on('new liveUpdates', function (update) {
             msg = JSON.parse(update);
             // console.log(msg);
@@ -111,12 +189,24 @@ $(document).ready(
 
         });
 
+
+
+        // Open Modal for QR Code scanning
+        $(document).on('click', function (e) {
+            if ($(e.target).hasClass('fa-qrcode')) {
+                $('#modal1').modal('open');
+                readQR();
+            }
+        });
+
+        $('#hidden-btn').on('click', stopQR);
+
         socket.on('start error', function () {
 
             var $toastContent = $('<span><i class="material-icons">report_problem</i>Start error.Try again!</span>');
             Materialize.toast($toastContent, 5000);
             console.log('start error.Try again.');
-            $(run_button).removeClass('disabled');
+            $('#run-button').removeClass('disabled');
             $('#stop-button').addClass('disabled');
         });
 

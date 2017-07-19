@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.css">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -61,6 +62,7 @@
                             <div class="card-action">
                                 <a id="run-button" class="waves-effect waves-light btn"><i class="material-icons right">thumb_up</i>Run</a>
                                 <a id="stop-button" class="waves-effect waves-light btn disabled"><i class="material-icons right">thumb_down</i>Stop</a>
+                                 <a id="halt-resume" class="waves-effect waves-light btn disabled"><i class="material-icons right">thumbs_up_down</i>Halt</a>
                             </div>
                         </div>
                     </div>
@@ -73,10 +75,25 @@
         </div>
     </div>
 
+    <!--Modal for QR Code scanning-->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>QR Code Scanner</h4>
+            <p>Make sure QR Code is in focus.</p>
+            <video id="preview" width="480" height="320" ></video>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-action modal-close waves-effect waves-green btn-flat">Stop</a>
+            <!--<button type="btn waves-effect button" onclick="readQR()">Decode Qr</button>-->
+            <a id="hidden-btn" style="display:none;">IShouldNotBeVisible</a>
+        </div>
+    </div>
+
+    <!--Template for showing faces recorded by camera-->
     <script id="person-template" type="text/template">
         <li>
-            <div class="collapsible-header {{verify_status}}"><i class="material-icons">{{icon_name}}</i>{{person_name}}</div>
-            <div class="collapsible-body"><span>{{person_details}}</span></div>
+            <div class="collapsible-header person-data {{verify_status}}"><i class="material-icons">{{icon_name}}</i>{{person_name}}<a class="qr-code"><i class="fa fa-qrcode" aria-hidden="true"></i></a></div>
+            <div class="collapsible-body person-data"><span>{{person_details}}</span><a class="qr-code"><i class="fa fa-qrcode fa-lg" aria-hidden="true"></i></a></div>
         </li>
     </script>
 
@@ -88,6 +105,7 @@
     <!--Import materialize.js-->
     <script type="text/javascript" src="js/lib/materialize.js"></script>
     <script src="/js/lib/mustache.js"></script>
+    <script type="text/javascript" src="js/lib/instascan.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
 </body>
 

@@ -13,3 +13,6 @@
 .verify_true {
     color: green;
 }
+.fa-qrcode {
+    float: right;
+}

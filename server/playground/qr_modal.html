@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--AUTHORS' MUSINGS: Please move it into public folder for test/run-->
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.css">
+    <!--<link href="css/style.css" rel="stylesheet">-->
+</head>
+
+<body>
+    <a class="waves-effect waves-light btn" href="#modal1">Modal</a>
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+            <video id="preview" width="480" height="320"></video>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            <button type="btn waves-effect button" onclick="readQR()">Decode Qr</button>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="js/lib/materialize.js"></script>
+    <script type="text/javascript" src="js/lib/instascan.min.js"></script>
+    <script>
+        $('#modal1').modal();
+        let opts = {
+            continuous: false,
+            video: document.getElementById('preview'),
+            mirror: true,
+            captureImage: false,
+            backgroundScan: false,
+            refractoryPeriod: 5000,
+            scanPeriod: 1
+        }
+        function readQR() {
+
+            var promise = navigator.mediaDevices.getUserMedia({
+                audio: true,
+                video: true
+            });
+
+            promise.then(function (stream) {
+                console.log('stream: ', stream.active);
+                if (stream.active) {
+                    console.log('already active');
+                }
+                else {
+                    let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+                    console.log('new scanner');
+                    console.log(scanner);
+                    let result = null;
+                    scanner.addListener('scan', function (content) {
+                        console.log(content);
+                        scanner.stop()
+                            .then(function () {
+                                console.log("Camera stopped.");
+                            })
+                            .catch(function (e) {
+                                console.log('problem closing camera: ' + e);
+                            })
+                    })
+                    console.log('else');
+                    Instascan.Camera.getCameras()
+                        .then(function (cameras) {
+                            if (cameras.length > 0) {
+                                scanner.start(cameras[0]);
+                            }
+                            else {
+                                console.error('No Cameras found.');
+                            }
+                        }, (e) => {
+                            console.log(e);
+                        })
+                }
+            });
+
+
+        }
+    </script>
+</body>
+
+</html>

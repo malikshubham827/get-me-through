@@ -48,6 +48,8 @@ def main():
     #Capture Video indefinitely
     video_capture = cv2.VideoCapture(0)
 
+    original_width = video_capture.get(cv2.CAP_PROP_FRAME_WIDTH)
+    original_height = video_capture.get(cv2.CAP_PROP_FRAME_HEIGHT)
     # TODO: GET FROM DATABASE
     # known encodings of persons in database.
     # known_encodings = []
@@ -73,8 +75,17 @@ def main():
         #             everything OK ;)
         #     6.) Show the frame 
         # 
+
+        # Due to QR Code scanning, video element changes the size of video capture,
+        # which also affected this process(don't know why) so to convert it to original size
+        if video_capture.get(cv2.CAP_PROP_FRAME_WIDTH)!=original_width or video_capture.get(cv2.CAP_PROP_FRAME_HEIGHT)!= original_height:
+            video_capture.set(cv2.CAP_PROP_FRAME_WIDTH, original_width)
+            video_capture.set(cv2.CAP_PROP_FRAME_HEIGHT, original_height)
         ret, frame = video_capture.read()
 
+        # Don't proceed further until camera is able to capture pics
+        if not ret:
+            continue
         #smaller frame 1/4th of original size
         small_frame = cv2.resize(frame, (0,0), fx=.25, fy=.25)
 
