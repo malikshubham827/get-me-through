@@ -1,7 +1,8 @@
 # get-me-through
 A **Free, Offline,Real-Time, Open-source** web-app to assist organisers of an event to allow only authorised/invited people using `Face-Recognition Technology` or `QR Code`.
 
-The name of the project is just an exclamation to steer through the monotonous work, in today's world of spreading automation technology.
+The name of the project is just an exclamation to steer through the monotonous work, in today's world of spreading automation technology. The face recognition is built using dlib's pretrained model with
+99.38% accuracy. See [this](https://github.com/ageitgey/face_recognition#face-recognition)
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
