@@ -1,7 +1,17 @@
 module.exports = function (io) {
+    var path = require('path')
+    const { verify, verifyQR } = require(path.join(__dirname, './../auth/auth'));
 
     var pid = -1;
     var sendUpdates = false;
+    var entryIn = true; // If it is false, then the system is checking leaving people
+    // else arriving people
+
+    process.on('unhandledRejection', error => {
+        // Will print "unhandledRejection err is not defined"
+        console.log('unhandledRejection', error.message);
+        console.log(error);
+    });
 
     io.on('connection', function (socket) {
         console.log('a user connected', socket.id);
@@ -14,8 +24,9 @@ module.exports = function (io) {
             pid = py.pid;
 
             py.stdout.on('data', function (data1) {
+                // pre-processing, as data1 in binary buffer
                 data = data1.toString();
-                var a = data, arr=[];
+                var a = data, arr = [];
                 for (var i = 0; i < a.length - 1; i++) {
                     var s = '';
                     // console.log(' cur ' + i);
@@ -27,16 +38,29 @@ module.exports = function (io) {
                             i++;
                         }
                     }
-                    if(s!= '')
+                    if (s != '')
                         arr.push(s);
                 }
-                if(arr.length == 0) {
+                if (arr.length == 0) {
                     arr.push('Unknown');
                 }
                 data = JSON.stringify(arr);
                 console.log(" got from py " + data);
                 if (sendUpdates) {
                     io.emit('new liveUpdates', data);
+                    arr.forEach((name) => {
+                        verify(name, entryIn)
+                            .then((obj) => {
+                                io.emit(obj.eventName, { name, msg: obj.msg, details: obj.details });
+                            })
+                            .catch((obj) => {
+                                io.emit(obj.eventName, { name, msg: obj.msg });
+                            })
+                            .catch((e) => {
+                                console.log('out of the world error');
+                                console.log(e);
+                            })
+                    });
                 }
 
             });
@@ -48,6 +72,7 @@ module.exports = function (io) {
                 io.emit('start error');
             });
 
+            // When python process stops without error
             function exitHandler(data, signal) {
                 console.log('run.js -> success code:' + data + ' ' + signal);
                 if (data != 0 && data != null) {
@@ -98,6 +123,25 @@ module.exports = function (io) {
                 io.emit('stop error', "No Child Process found to kill");
             }
         });
+
+        socket.on('qr auth', function (opt) {
+            // console.log('\ngot msg\n');
+            // console.log(msg);
+            console.log(opt.client);
+            verifyQR(opt.code, entryIn)
+                .then((obj) => {
+                    io.emit(obj.eventName, { name: obj.name, client: opt.client, msg: obj.msg, details: obj.details });
+                })
+                .catch((obj) => {
+                    io.emit(obj.eventName, { name: obj.name, msg: obj.msg, client: opt.client });
+                });
+        });
+
+        socket.on('mode change', function (val) {
+            entryIn = val;
+        });
+
+
 
         socket.on('disconnect', function () {
             console.log('user disconnected');

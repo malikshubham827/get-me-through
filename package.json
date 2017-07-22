@@ -23,7 +23,8 @@
     "python-shell": "^0.4.0",
     "qr-image": "^3.2.0",
     "serve-favicon": "^2.4.3",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "validator": "^8.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

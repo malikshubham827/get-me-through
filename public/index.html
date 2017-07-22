@@ -2,100 +2,184 @@
 <html lang="en">
 
 <head>
-    <title></title>
+    <title>Get Me Through</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.css">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link rel="icon" href="http://localhost:3000/favicon.ico?v=2" type="image/x-icon" />
 </head>
 
 <body>
-    <nav class="light-green lighten-1" role="navigation">
-        <div class="nav-wrapper container">
-            <a href="#" id="logo-container" class="brand-logo">Get Me Through</a>
-        </div>
-    </nav>
+    <main>
+        <a href="https://github.com/malikshubham827/get-me-through" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+        <nav class="light-green lighten-1" role="navigation">
+            <div class="nav-wrapper container">
+                <a href="#" id="logo-container" class="brand-logo">Get Me Through</a>
+            </div>
+        </nav>
 
-    <div class="container">
-        <div class="row  light-blue lighten-5">
-            <div class="col s12">
-                <ul class="tabs">
-                    <li class="tab col s6"><a class="active" href="#app-train">Train
+        <div class="container">
+            <div class="row  light-blue lighten-5">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s6"><a class="active" href="#app-train">Train
                         <i class="material-icons right tooltipped tick" data-postion="top" data-delay="50" data-tooltip="Model trained successfully" style="display: none;font-size: 40px;color: green;">done</i></a>
-                    </li>
-                    <li class="tab col s6"><a href="#app-run">Let's Go
+                        </li>
+                        <li class="tab col s6"><a href="#app-run">Let's Go
                         <i class="material-icons right tooltipped cross" data-postion="top" data-delay="50" data-tooltip="First train the model" style="font-size: 40px; color: red;">not_interested</i></a>
-                    </li>
-                </ul>
-            </div>
-            <div id="app-train" class="col s12">
-                <div class="row">
-                    <div class="col s12">
-                        <div class="card blue-grey darken-1">
-                            <div class="card-content white-text">
-                                <span class="card-title">Train Model</span>
-                                <p>It is essential to train your model before using it. Press the button below to start training.
-                                    Model doesn't learn an image again which it has already learnt to save time.</p>
-                            </div>
-                            <div class="card-action">
-                                <a id="train-button" class="waves-effect waves-light btn"><i class="material-icons right">trending_flat</i>Train</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="app-train" class="col s12">
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="card blue-grey darken-1">
+                                <div class="card-content white-text">
+                                    <span class="card-title">Train Model</span>
+                                    <p>It is essential to train your model before using it. Press the button below to start
+                                        training. Model doesn't learn an image again which it has already learnt to save
+                                        time.</p>
+                                </div>
+                                <div class="card-action">
+                                    <a id="train-button" class="waves-effect waves-light btn tooltipped" data-postion="bottom" data-delay="50" data-tooltip="Train the model"><i class="material-icons right">trending_flat</i>Train</a>
+                                    <a id="clear-button" class="waves-effect waves-light btn tooltipped" data-postion="bottom" data-delay="50" data-tooltip="Clear the model data"><i class="material-icons right">delete</i>Clear Model</a>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="progress" style="display: none;">
+                        <div class="indeterminate"></div>
+                    </div>
                 </div>
-                <div class="progress" style="display: none;">
-                    <div class="indeterminate"></div>
-                </div>
-            </div>
-            <div id="app-run" class="col s12">
-                <div class="row">
-                    <div class="col s12">
-                        <div class="card blue-grey darken-1">
-                            <div class="card-content white-text">
-                                <span class="card-title">Run Model</span>
-                                <p>Click the below button to start the real-time face-recognition
-                                    camera.
-                                </p>
-                            </div>
-                            <div class="card-action">
-                                <a id="run-button" class="waves-effect waves-light btn"><i class="material-icons right">thumb_up</i>Run</a>
-                                <a id="stop-button" class="waves-effect waves-light btn disabled"><i class="material-icons right">thumb_down</i>Stop</a>
-                                 <a id="halt-resume" class="waves-effect waves-light btn disabled"><i class="material-icons right">thumbs_up_down</i>Halt</a>
+                <div id="app-run" class="col s12">
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="card blue-grey darken-1">
+                                <div class="card-content white-text">
+                                    <span class="card-title">Run Model</span>
+                                    <p>Click the below button to start the real-time face-recognition camera.
+                                    </p>
+                                </div>
+                                <div class="card-action">
+                                    <a id="run-button" class="waves-effect waves-light btn tooltipped" data-postion="bottom" data-delay="50" data-tooltip="Run the model"><i class="material-icons right">thumb_up</i>Run</a>
+                                    <a id="stop-button" class="waves-effect waves-light btn disabled tooltipped" data-postion="bottom" data-delay="50" data-tooltip="Stop the model"><i class="material-icons right">thumb_down</i>Stop</a>
+                                    <a id="halt-resume" class="waves-effect waves-light btn disabled tooltipped" data-postion="bottom" data-delay="50" data-tooltip="Live Updates"><i class="material-icons right">thumbs_up_down</i>Halt</a>
+                                    <!--<p>-->
+                                    <input class="with-gap" name="group1" type="radio" id="in" checked />
+                                    <label for="in" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Arriving visitors">In</label>
+                                    <input class="with-gap" name="group1" type="radio" id="out" />
+                                    <label for="out" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Leaving visitors">Out</label>
+                                    <!--</p>-->
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <ul class="collapsible popout" data-collapsible="accordion" style="display:none;">
+                        </ul>
+                    </div>
                 </div>
-                <div>
-                    <ul class="collapsible popout" data-collapsible="accordion" style="display:none;">
+            </div>
+        </div>
+
+        <!--Modal for QR Code scanning-->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>QR Code Scanner</h4>
+                <p>Make sure QR Code is in focus.</p>
+                <video id="preview" width="480" height="320"></video>
+            </div>
+            <div class="modal-footer">
+                <a class="modal-action modal-close waves-effect waves-green btn-flat">Stop</a>
+                <!--<button type="btn waves-effect button" onclick="readQR()">Decode Qr</button>-->
+                <a id="hidden-btn" style="display:none;">IShouldNotBeVisible</a>
+            </div>
+        </div>
+
+    </main>
+    <!--Footer-->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Get Me Through</h5>
+                    <p class="grey-text text-lighten-4">
+                        A Free, Offline, Open-source web-app to assist organisers of an event to allow only authorised/invited people using Face
+                        Recognition Technology or QR Code.
+                        <br/>
+                        <a style="color: #4c6758;" target="_blank" href="https://icons8.com/icon/7338/Facial-Recognition">Facial recognition icon credits</a>
+                    </p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/malikshubham827/get-me-through">Project Link</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/malikshubham827">Author</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Medium Post</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!--Modal for QR Code scanning-->
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <h4>QR Code Scanner</h4>
-            <p>Make sure QR Code is in focus.</p>
-            <video id="preview" width="480" height="320" ></video>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2017 SHUBHAM MALIK
+                <a class="grey-text text-lighten-4 right" href="https://github.com/malikshubham827/get-me-through/blob/master/LICENSE.md">MIT License</a>
+            </div>
         </div>
-        <div class="modal-footer">
-            <a class="modal-action modal-close waves-effect waves-green btn-flat">Stop</a>
-            <!--<button type="btn waves-effect button" onclick="readQR()">Decode Qr</button>-->
-            <a id="hidden-btn" style="display:none;">IShouldNotBeVisible</a>
-        </div>
-    </div>
+    </footer>
 
     <!--Template for showing faces recorded by camera-->
     <script id="person-template" type="text/template">
         <li>
-            <div class="collapsible-header person-data {{verify_status}}"><i class="material-icons">{{icon_name}}</i>{{person_name}}<a class="qr-code"><i class="fa fa-qrcode" aria-hidden="true"></i></a></div>
-            <div class="collapsible-body person-data"><span>{{person_details}}</span><a class="qr-code"><i class="fa fa-qrcode fa-lg" aria-hidden="true"></i></a></div>
+            <div class="collapsible-header" data-person-head="{{person_name_formatted}}"><i class="material-icons">{{icon_name}}</i>{{person_name}}<a class="qr-code"><i class="fa fa-qrcode" aria-hidden="true"></i></a></div>
+            <div class="collapsible-body person-data" data-person="{{person_name_formatted}}">
+            </div>
         </li>
     </script>
+
+    <!--Template for person details-->
+    <script id="person-details-template" type="text/template">
+        <p>{{msg}}</p>
+        <table class="bordered responsive-table striped">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Email</td>
+                    <td>{{email}}</td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td>{{status}}</td>
+                </tr>
+                <tr>
+                    <td>Permission</td>
+                    <td>{{allow}}</td>
+                </tr>
+                <tr>
+                    <td>Visiting Time</td>
+                    <td>{{timeIn}}</td>
+                </tr>
+                <tr>
+                    <td>Departure Time</td>
+                    <td>{{timeOut}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </script>
+
+    <!--Template for message-->
+    <script id="person-msg-template" type="text/template">
+        <p>{{msg}}</p>
+    </script>
+
 
     <script src="/socket.io/socket.io.js"></script>
     <!--For Offline-->

@@ -3,16 +3,34 @@
         left:37%;
     }
 }
+
+body {
+     display: flex;
+     min-height: 100vh;
+     flex-direction: column;
+ }
+ main {
+     flex: 1 0 auto;
+ }
+
 .row {
     padding-top: 10px;
     margin-top: 10px;
 }
-.verify_false {
+/*.verify_false {
     color: red;
 }
 .verify_true {
     color: green;
-}
+}*/
 .fa-qrcode {
     float: right;
+}
+
+label[for=in],label[for=out] {
+    color: wheat !important;
+}
+
+[type="radio"]:not(:checked), [type="radio"]:checked {
+    position: inherit;
 }
