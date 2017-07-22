@@ -1,36 +1,61 @@
 @media only screen and (min-width: 993px) {
     .brand-logo {
-        left:37%;
+        left: 37%;
     }
 }
 
+html,
+footer {
+    background: #FEAC5E;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+nav {
+    background: #614385;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #516395, #614385);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #516395, #614385);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 body {
-     display: flex;
-     min-height: 100vh;
-     flex-direction: column;
- }
- main {
-     flex: 1 0 auto;
- }
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
 
 .row {
     padding-top: 10px;
     margin-top: 10px;
 }
+
+
 /*.verify_false {
     color: red;
 }
 .verify_true {
     color: green;
 }*/
+
 .fa-qrcode {
     float: right;
 }
 
-label[for=in],label[for=out] {
+label[for=in],
+label[for=out] {
     color: wheat !important;
 }
 
-[type="radio"]:not(:checked), [type="radio"]:checked {
+[type="radio"]:not(:checked),
+[type="radio"]:checked {
     position: inherit;
 }

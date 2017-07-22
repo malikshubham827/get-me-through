@@ -120,6 +120,8 @@ Thanks for listening to my musings so far.
 
 You can connect with [me](http://shubhammalik.xyz).
 
+Read my medium [post](https://medium.com/@malikshubham827/offline-real-time-face-recognition-in-node-js-using-python-atop-99-38-accuracy-model-9f0f46d6a88d) regarding my experience building it. 9 mins only, take a cup of coffee and enjoy(I tried my best) it (gifs included).
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/malikshubham827/get-me-through/blob/master/LICENSE.md) file for details
 
