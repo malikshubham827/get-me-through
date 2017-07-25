@@ -2,7 +2,9 @@
 A **Free, Offline,Real-Time, Open-source** web-app to assist organisers of an event to allow only authorised/invited people using `Face-Recognition Technology` or `QR Code`.
 
 The name of the project is just an exclamation to steer through the monotonous work, in today's world of spreading automation technology. The face recognition is built using dlib's pretrained model with
-99.38% accuracy. See [this](https://github.com/ageitgey/face_recognition#face-recognition)
+99.38% accuracy. See [this](https://github.com/ageitgey/face_recognition#face-recognition) for more info. 
+
+One more important thing: *The face recognition model is trained on adults and does not work very well on children. It tends to mix up children quite easy using the default comparison threshold of 0.6.*. If you have children as a part of the audience you may use the QR Code or may change the comparison threshold if that fulfills your requirement.
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -38,7 +40,7 @@ it looks like this:
 
 6.) Now do `npm install` on the command line, make sure you do in the root of the project such that `package.json` file is visible on doing `ls`.
 
-7.) To run it: `npm start`, for development purpose use `npm test` after installing `nodemon` and after you see `Server listening on port: 3000.` open your browser and type: `localhost:3000` and it's done. 
+7.) **Please see the below section of "How to use" before following this step.** To run it: `npm start`, for development purpose use `npm test` after installing `nodemon` and after you see `Server listening on port: 3000.` open your browser and type: `localhost:3000` and it's done. 
 You would be greeted by something like this(I am not good at Front-End so please bear with me):
 ![start](https://user-images.githubusercontent.com/13511528/28490748-5240823e-6eff-11e7-9776-25b5d633425d.png)
 
@@ -51,6 +53,8 @@ For ex: If you want to recognise `Narendra Modi`, you would name the file as `Na
 
 The model learn encodings and want a folder named `data` to store the learnt encodings there. **You have to make this folder on your own.**
 Just do `mkdir data` and that's it. 
+
+One another thing: You would have a folder named `bin` in the root of this project(if not create one using `mkdir bin`). Go into `bin` folder and paste this file: [www](https://gist.github.com/malikshubham827/439cec7df328b12b1a40dcab550aef20). This file should have no extension. It is important as `npm start` invokes this file to set-up the web-server.
 
 ### MongoDB Database Support
 The project also supports **MongoDB** support builtin. If you have many entry gates/systems you may synchronise them with a cloud database
@@ -114,6 +118,7 @@ A lot of features can be added, glimpse of few:
 * Make another web-app or integrate in it to allow user to register, upload pics, get QR Code(QR Code generation script ready, test passed)
 * Add a feature to allow the user to choose camera of their choice like external web-cam, phone camera. Currently using builtin laptop front facing camera.
 * Performance improvements. Test on large no. of people in real life situation.
+* As the model is trained on adults, it might mixup the children. So there should be a button to revoke the entry and reset that particular record. Maybe the child of face is recognised same as that of his parents, so that means 2 people with same face/entry. In that case revoke the entry of child and use QR Code. Or you may hack around it too :bowtie:.
 
 ## Author
 * Shubham Malik
