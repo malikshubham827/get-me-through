@@ -26,8 +26,8 @@ Probably related to Python path or something else. If you can handle it then go 
 **Activate** the virtual environment.
 
 2.) Download the [face_recognition](https://github.com/ageitgey/face_recognition) python package(Details included).
- This is the crux of the whole project. It would take some time. If you face some difficulty in downloading `dlib` @ageigey has
-provided some info, if that even doesn't help you may see: [How to install dlib](http://www.pyimagesearch.com/2017/03/27/how-to-install-dlib/) <- *I followed this*.
+ This is the crux of the whole project. It would take some time. If you face some difficulty in downloading `dlib` @ageitgey has
+provided some info(there is pre-configured VM image also but I have not tried it), if that even doesn't help you may see: [How to install dlib](http://www.pyimagesearch.com/2017/03/27/how-to-install-dlib/) <- *I followed this*.
 
 3.) Download OpenCV3. If you are on Mac/Linux you may find this helpful: 
 [Install OpenCV3 on MacOS](http://www.pyimagesearch.com/2016/12/19/install-opencv-3-on-macos-with-homebrew-the-easy-way/) <- *I followed this*.
