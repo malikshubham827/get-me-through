@@ -17,19 +17,19 @@ Probably related to Python path or something else. If you can handle it then go 
 * Python3
 * Node.js v8.1.4 or later
 * MongoDB
-* macOS(Tested),Linux(should work), Windows(Untested)
+* macOS( Tested),Linux( Working), Windows( Untested)
 * C++11 or later
 
 ### Installing
 1.) I would recommend to create a `Python3` virtual environment with the name `get-me-through`.
 [A good guide for creating virtual env in python3](https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-ubuntu-16-04).
-Activate the virtual environment.
+**Activate** the virtual environment.
 
 2.) Download the [face_recognition](https://github.com/ageitgey/face_recognition) python package(Details included).
  This is the crux of the whole project. It would take some time. If you face some difficulty in downloading `dlib` @ageigey has
 provided some info, if that even doesn't help you may see: [How to install dlib](http://www.pyimagesearch.com/2017/03/27/how-to-install-dlib/) <- *I followed this*.
 
-3.) Download OpenCV3. If you are on Mac(Linux should also work similarly) you may find this helpful: 
+3.) Download OpenCV3. If you are on Mac/Linux you may find this helpful: 
 [Install OpenCV3 on MacOS](http://www.pyimagesearch.com/2016/12/19/install-opencv-3-on-macos-with-homebrew-the-easy-way/) <- *I followed this*.
 
 4.) Congrats if you made it to this step. Now you can just Download or clone my git repository code in the virtual environment and make sure
@@ -93,7 +93,7 @@ verify the details for an *extra layer of security* as shown below.
 At the top of description is a little message owing to the real-time status. Have a look at code to customise/understand.
 Every property is self explanatory except `Permission`. This yours truly have added in case there is some criteria specified by your organisation
 as an important thing to be done to become elegible. It can be like downloading certain Apps, Signing up for a service/Create a new account,
-email verification, phone verification etc. You are free to customize it. If you change it please have a look at auth.js and see if it 
+email verification, phone verification etc. You are free to customize it. If you change it please have a look at `server/auth/auth.js` and see if it 
 needs modifications also to cater to your needs.
 
 **I think if you are desperate enough, you would like to play around with it, to explore it, improve it and find the shortcomings** .
