@@ -30,7 +30,7 @@ Probably related to Python path or something else. If you can handle it then go 
 provided some info(there is pre-configured VM image also but I have not tried it), if that even doesn't help you may see: [How to install dlib](http://www.pyimagesearch.com/2017/03/27/how-to-install-dlib/) <- *I followed this*.
 
 3.) Download OpenCV3. If you are on Mac/Linux you may find this helpful: 
-[Install OpenCV3 on MacOS](http://www.pyimagesearch.com/2016/12/19/install-opencv-3-on-macos-with-homebrew-the-easy-way/) <- *I followed this*.
+[Install OpenCV3 on MacOS](http://www.pyimagesearch.com/2016/12/19/install-opencv-3-on-macos-with-homebrew-the-easy-way/) <- *I followed this*.[**Update 30/3/2018: If you are not able to import cv2(OpenCV3) please see issue#7**]
 
 4.) Congrats if you made it to this step. Now you can just Download or clone my git repository code in the virtual environment and make sure
 it looks like this:
